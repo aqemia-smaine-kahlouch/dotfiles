@@ -39,6 +39,9 @@ ln -sf "$DOTFILES_DIR/.config/starship.toml" ~/.config/starship.toml
 ln -sf "$DOTFILES_DIR/custom/smana.bash" ~/.bash_it/custom/smana.bash
 ln -sf "$DOTFILES_DIR/aliases/smana.bash" ~/.bash_it/aliases/smana.bash
 
+# --- Ensure .bash_profile sources .bashrc (login shells) ---
+ln -sf "$DOTFILES_DIR/.bash_profile" ~/.bash_profile
+
 # --- Ensure .bashrc loads bash-it ---
 if ! grep -q 'BASH_IT' ~/.bashrc 2>/dev/null; then
     cat >> ~/.bashrc <<'BASHRC'
