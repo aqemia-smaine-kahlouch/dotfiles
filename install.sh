@@ -7,22 +7,30 @@ DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
 if [ ! -d "$HOME/.bash_it" ]; then
     echo "Installing bash-it..."
     git clone --depth=1 https://github.com/Bash-it/bash-it.git "$HOME/.bash_it"
-    "$HOME/.bash_it/install.sh" --silent --no-modify-config
 fi
 
-# --- Enable bash-it components ---
+# --- Enable bash-it components via symlinks ---
+mkdir -p "$HOME/.bash_it/enabled"
+
 # Aliases
 for a in bash-it directory editor general; do
-    bash-it enable alias "$a" 2>/dev/null || true
+    ln -sf "$HOME/.bash_it/aliases/available/${a}.aliases.bash" \
+           "$HOME/.bash_it/enabled/150---${a}.aliases.bash" 2>/dev/null || true
 done
 
 # Plugins
-bash-it enable plugin base 2>/dev/null || true
+ln -sf "$HOME/.bash_it/plugins/available/base.plugin.bash" \
+       "$HOME/.bash_it/enabled/250---base.plugin.bash"
 
 # Completions
 for c in system bash-it docker git github-cli go terraform; do
-    bash-it enable completion "$c" 2>/dev/null || true
+    ln -sf "$HOME/.bash_it/completion/available/${c}.completion.bash" \
+           "$HOME/.bash_it/enabled/350---${c}.completion.bash" 2>/dev/null || true
 done
+ln -sf "$HOME/.bash_it/completion/available/system.completion.bash" \
+       "$HOME/.bash_it/enabled/325---system.completion.bash"
+ln -sf "$HOME/.bash_it/completion/available/aliases.completion.bash" \
+       "$HOME/.bash_it/enabled/800---aliases.completion.bash"
 
 # --- Symlink config files ---
 mkdir -p ~/.config ~/.bash_it/custom ~/.bash_it/aliases
