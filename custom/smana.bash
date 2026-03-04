@@ -16,8 +16,14 @@ export HISTIGNORE="&:bg:fg:ll:"
 export EDITOR=vim
 export KUBE_EDITOR=vim
 
-# AWS CLI completer (installed in workspace image)
-complete -C /usr/local/bin/aws_completer aws 2>/dev/null
+# AWS CLI completer
+_aws_completer=$(command -v aws_completer 2>/dev/null)
+[[ -n "$_aws_completer" ]] && complete -C "$_aws_completer" aws
+
+# gh completion (fallback if bash-it github-cli completion isn't loaded)
+if command -v gh &>/dev/null && ! complete -p gh &>/dev/null 2>&1; then
+    eval "$(gh completion -s bash)"
+fi
 
 # Go
 GOPATH=${HOME}/go

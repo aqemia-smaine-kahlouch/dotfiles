@@ -23,7 +23,7 @@ ln -sf "$HOME/.bash_it/plugins/available/base.plugin.bash" \
        "$HOME/.bash_it/enabled/250---base.plugin.bash"
 
 # Completions
-for c in system bash-it docker git github-cli go terraform; do
+for c in system bash-it docker git github-cli go kubectl terraform; do
     ln -sf "$HOME/.bash_it/completion/available/${c}.completion.bash" \
            "$HOME/.bash_it/enabled/350---${c}.completion.bash" 2>/dev/null || true
 done
