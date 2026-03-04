@@ -12,10 +12,6 @@ disabled = true
 [container]
 disabled = true
 
-[env_var.CODER_WORKSPACE_NAME]
-format = "[ $env_value]($style) "
-style = "bold cyan"
-
 [kubernetes]
 disabled = false
 style = "bold fg:18 bg:117"
