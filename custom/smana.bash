@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 # Starship prompt
-eval "$(starship init bash)"
+command -v starship &>/dev/null && eval "$(starship init bash)"
 
 # Zoxide (cd replacement)
-eval "$(zoxide init --cmd cd bash)"
+command -v zoxide &>/dev/null && eval "$(zoxide init --cmd cd bash)"
 
 # History settings
 export HISTSIZE=2000000
