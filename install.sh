@@ -50,7 +50,7 @@ export TG_PROVIDER_CACHE=true
 ZSHRC
   fi
 
-  chsh -s /usr/bin/zsh
+  chsh -s /usr/bin/zsh || true
 
 else
   # --- Install bash-it ---
